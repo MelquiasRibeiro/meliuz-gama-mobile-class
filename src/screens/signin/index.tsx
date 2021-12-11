@@ -80,33 +80,30 @@ const SignIn: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <View style={styles.default}>
-        <View style={styles.card}>
-          <Text style={styles.title}>Login</Text>
-          <View>
-            <TextInput
-              placeholder="Informe seu e-mail"
-              value={user.email}
-              onChangeText={e => setUser({...user, email: e})}
-            />
-            <TextInput
-              placeholder="Informe sua senha"
-              value={user.password}
-              secureTextEntry={true}
-              onChangeText={e => setUser({...user, password: e})}
-            />
-            <Button
-              title="Entrar"
-              onPress={handleLogin}
-              color="#2a2a2a"
-              accessibilityLabel="Fazer login"
-            />
-          </View>
+      <View style={styles.container}>
+        <Text style={styles.title}>Login</Text>
+        <View>
+          <TextInput
+            placeholder="Informe seu e-mail"
+            value={user.email}
+            onChangeText={e => setUser({...user, email: e})}
+            style={styles.input}
+          />
+          <TextInput
+            placeholder="Informe sua senha"
+            value={user.password}
+            secureTextEntry={true}
+            onChangeText={e => setUser({...user, password: e})}
+            style={styles.input}
+          />
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.textButton}>Entrar</Text>
+          </TouchableOpacity>
         </View>
         <View>
           <Text>Ainda não possui conta?</Text>
           <TouchableOpacity onPress={handleRegister}>
-            <Text>Cadastre-se</Text>
+            <Text style={styles.textButtonLink}>Cadastre-se</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -117,20 +114,48 @@ const SignIn: React.FC = () => {
 export default SignIn;
 
 const styles = StyleSheet.create({
-  default: {
-    height: Dimensions.get('window').height,
-    justifyContent: 'center',
+  container: {
+    alignContent: 'center',
     alignItems: 'center',
-  },
-  card: {
-    backgroundColor: '#FECAD6',
-    paddingHorizontal: 45,
-    paddingVertical: 45,
-    borderRadius: 12,
+    marginTop: Dimensions.get('screen').height / 3,
   },
   title: {
-    fontSize: 25,
+    textAlign: 'center',
+    fontSize: 24,
     fontWeight: 'bold',
-    paddingBottom: 20,
+  },
+  input: {
+    height: 40,
+    width: Dimensions.get('screen').width * 0.8,
+    backgroundColor: '#eee',
+    borderRadius: 8,
+    marginVertical: 8,
+    paddingHorizontal: 16,
+    borderColor: '#000',
+    borderWidth: 1,
+  },
+  button: {
+    backgroundColor: '#000',
+    padding: 16,
+    borderRadius: 8,
+    marginVertical: 16,
+  },
+
+  textButton: {
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
+  buttonLink: {
+    marginVertical: 16,
+  },
+  textButtonLink: {
+    textDecorationStyle: 'solid',
+    textDecorationLine: 'underline',
+    textDecorationColor: '#000',
+    textAlign: 'center',
+    marginTop: 8,
   },
 });

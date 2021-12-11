@@ -12,6 +12,13 @@ const AuthToken: Reducer<IAuth | any> = (state = INITIAL_STATE, action) => {
         auth: auth,
       };
     }
+    case 'LOGOUT': {
+      const {auth} = action.payload;
+      return {
+        ...state,
+        auth: auth,
+      };
+    }
 
     default: {
       return state;

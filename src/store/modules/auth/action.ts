@@ -15,3 +15,19 @@ export const getToken = (auth: IAuth): IAction => {
     },
   };
 };
+
+export const logOut = () => {
+  return {
+    type: 'LOGOUT',
+    payload: {
+      auth: {
+        token: '',
+        user: {
+          name: '',
+          email: '',
+          id: '',
+        },
+      },
+    },
+  };
+};

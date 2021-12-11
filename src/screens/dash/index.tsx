@@ -7,8 +7,8 @@ import IsAuth from '../../components/IsAuth';
 const dash: React.FC = () => {
   return (
     <View style={styles.default}>
-      <IsAuth />
       <Text>Dashboard</Text>
+      <IsAuth />
     </View>
   );
 };

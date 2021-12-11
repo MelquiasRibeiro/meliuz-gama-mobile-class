@@ -15,7 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 import IsAuth from '../../components/IsAuth';
 
 import api from '../../services';
-import { IUser } from '../../types/index';
+import {IUser} from '../../types/index';
 
 const SignUp: React.FC = () => {
   const navigation: void | any = useNavigation();
@@ -49,60 +49,83 @@ const SignUp: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <View style={styles.default}>
-        <View style={styles.card}>
-          <Text style={styles.title}>Cadastrar</Text>
-          <TextInput
-            placeholder="Informe seu nome"
-            onChangeText={e => setData({...data, name: e})}
-          />
-          <TextInput
-            placeholder="Informe seu email"
-            onChangeText={e => setData({...data, email: e})}
-          />
-          <TextInput
-            placeholder="Informe sua senha"
-            secureTextEntry={true}
-            onChangeText={e => setData({...data, password: e})}
-          />
-          <Button
-            title="Cadastrar"
-            onPress={handleRegister}
-            color="#2a2a2a"
-            accessibilityLabel="Realizar cadastro"
-          />
-        </View>
+      <View style={styles.container}>
+        <Text style={styles.title}>Cadastrar</Text>
+        <TextInput
+          placeholder="Informe seu nome"
+          onChangeText={e => setData({...data, name: e})}
+          style={styles.input}
+        />
+        <TextInput
+          placeholder="Informe seu email"
+          onChangeText={e => setData({...data, email: e})}
+          style={styles.input}
+        />
+        <TextInput
+          placeholder="Informe sua senha"
+          secureTextEntry={true}
+          onChangeText={e => setData({...data, password: e})}
+          style={styles.input}
+        />
+        <TouchableOpacity style={styles.button} onPress={handleRegister}>
+          <Text style={styles.textButton}>cadastrar</Text>
+        </TouchableOpacity>
         <View>
-          <Text>
-            Já possui cadastro?
-            <TouchableOpacity onPress={handleLogin}>
-              <Text>Logar</Text>
-            </TouchableOpacity>
-          </Text>
+          <Text>Já possui cadastro?</Text>
+          <TouchableOpacity style={styles.buttonLink} onPress={handleLogin}>
+            <Text style={styles.textButtonLink}>Logar</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
-}
+};
 
 export default SignUp;
 
 const styles = StyleSheet.create({
-  default: {
-    justifyContent: 'center',
+  container: {
+    alignContent: 'center',
     alignItems: 'center',
-    height: Dimensions.get('window').height,
-  },
-  card: {
-    backgroundColor: '#FECAD6',
-    paddingHorizontal: 45,
-    paddingVertical: 45,
-    borderRadius: 12,
+    marginTop: Dimensions.get('screen').height / 3,
   },
   title: {
-    alignContent: 'center',
-    fontSize: 25,
+    textAlign: 'center',
+    fontSize: 24,
     fontWeight: 'bold',
-    paddingBottom: 20,
+  },
+  input: {
+    height: 40,
+    width: Dimensions.get('screen').width * 0.8,
+    backgroundColor: '#eee',
+    borderRadius: 8,
+    marginVertical: 8,
+    paddingHorizontal: 16,
+    borderColor: '#000',
+    borderWidth: 1,
+  },
+  button: {
+    backgroundColor: '#000',
+    padding: 16,
+    borderRadius: 8,
+    marginVertical: 16,
+  },
+
+  textButton: {
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
+  buttonLink: {
+    marginVertical: 16,
+  },
+  textButtonLink: {
+    textDecorationStyle: 'solid',
+    textDecorationLine: 'underline',
+    textDecorationColor: '#000',
+    textAlign: 'center',
+    marginTop: 8,
   },
 });
