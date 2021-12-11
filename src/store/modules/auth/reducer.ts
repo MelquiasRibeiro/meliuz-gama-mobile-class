@@ -8,7 +8,8 @@ const AuthToken: Reducer<IAuth | any> = (state = INITIAL_STATE, action) => {
     case 'SET_TOKEN': {
       const {auth} = action.payload;
       return {
-        auth: auth.auth,
+        ...state,
+        auth: auth,
       };
     }
 
